@@ -1,0 +1,111 @@
+package com.assignment.tictactoe.controller;
+
+import com.jfoenix.controls.JFXToggleButton;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.Pane;
+
+import javax.swing.*;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class WelcomePanelController implements Initializable {
+
+
+
+    @FXML
+    private Pane gamePane;
+
+    @FXML
+    private  Button replayButton;
+
+    @FXML
+    private JFXToggleButton easyModeToggleBtn;
+
+
+    @FXML
+    private TextField nameText;
+
+    @FXML
+    private Button playButton;
+
+
+    private String humanPlayerName = null;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        replayButton.setText("Play");
+
+
+        gamePane.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.ENTER) {
+                playButton.fire();
+            }
+        });
+    }
+
+    static int mode = 0;  /* 0 is for easy mode */
+    @FXML
+    void setMode(ActionEvent event) {
+        if (mode == 0) {
+            mode = 1;  /* Switch to Hard mode */
+            easyModeToggleBtn.setText("Hard mode");
+            easyModeToggleBtn.setStyle("-fx-text-fill: red;");
+        } else {
+            mode = 0;  /* Switch to Easy mode */
+            easyModeToggleBtn.setText("Easy mode");
+            easyModeToggleBtn.setStyle("-fx-text-fill: blue;");
+        }
+    }
+
+    @FXML
+    void play(ActionEvent event) throws IOException {
+        humanPlayerName = nameText.getText();
+
+        if (!humanPlayerName.isEmpty()) {
+            loadGameBoard();
+        } else {
+            JOptionPane.showMessageDialog(null, "Enter Your Name");
+        }
+    }
+
+    public void loadGameBoard() {
+        replayButton.setText("Replay");
+
+        try {
+            Pane newBoardPane = FXMLLoader.load(this.getClass().getResource("/view/boardUi.fxml"));
+
+            //gamePane.getChildren().clear();
+            gamePane.getChildren().add(newBoardPane);
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Failed to reload the game board.");
+        }
+
+
+    }
+
+
+
+    @FXML
+    public void replay(ActionEvent event) {
+        humanPlayerName = nameText.getText();
+
+        if (!humanPlayerName.isEmpty()) {
+            loadGameBoard();
+        } else {
+            JOptionPane.showMessageDialog(null, "Enter Your Name");
+        }
+
+        // loadGameBoard();
+    }
+
+
+
+}
