@@ -8,6 +8,7 @@ import java.util.Random;
 
 public class AiPlayer extends Player {
 
+    private Random rand = new Random();
     private final BoardController boardController;
 
     public AiPlayer(Board board, BoardController boardController) {
@@ -108,47 +109,50 @@ public class AiPlayer extends Player {
         /* pahalin Thiyenne First move eka random set karanna easy mode theruwoth random position ekak set wena kotasa */
     //--------------------------------------//
 
+
     public void moveRandom(int row, int col) {
-        System.out.println("Random Ai Move");
+        System.out.println("Random AI Move");
 
         Piece piece = Piece.O;
-        Button[][] aiButtons = BoardController.buttons;
 
-        int[] randomMove = generateRandomMove(aiButtons);
+        int[] randomMove = chooseRandomMove();
+        /* choose random move eken ena random move eka aragena aiRow ,aiCol kiyana variable 2 ta dala e move eka update move ekata pass karanawa */
+        int aiRow = randomMove[0];
+        int aiCol = randomMove[1];
 
-        if (randomMove != null) {
-            int aiRow = randomMove[0];
-            int aiCol = randomMove[1];
-
-            board.updateMove(aiRow, aiCol, piece);
-            boardController.update(aiRow, aiCol, false);  // Update UI
-        } else {
-            System.out.println("No valid moves available.");
-        }
-
+        board.updateMove(aiRow, aiCol, piece);  // Update logic
+        boardController.update(aiRow, aiCol, false);  // Update UI
     }
 
+    public int[] chooseRandomMove() {
+        Piece[][] currentBoard = BoardImpl.pieces;
+        int emptyCount = 0;
 
-    private int[] generateRandomMove(Button[][] aiButtons) {
-        ArrayList<int[]> availableMoves = new ArrayList<>();
-
-
-        for (int i = 0; i < aiButtons.length; i++) {
-            for (int j = 0; j < aiButtons[i].length; j++) {
-                if (aiButtons[i][j].getText().isEmpty()) {
-                    availableMoves.add(new int[]{i, j});
+        // First, count the number of empty spaces
+        for (int i = 0; i < currentBoard.length; i++) {
+            for (int j = 0; j < currentBoard[i].length; j++) {
+                if (currentBoard[i][j] == Piece.EMPTY) {
+                    emptyCount++; /* random move ekak danna kalin board eke kochchara kotu empty da kiyala balanawa */
                 }
             }
         }
 
+        /* kalin hoyapu empty tika atharen random move ekak thoranawa class eke uda hadapu random object eka use karala */
+        int targetIndex = rand.nextInt(emptyCount);
 
-        if (availableMoves.isEmpty()) {
-            return null;
+        int currentIndex = 0;
+        for (int i = 0; i < currentBoard.length; i++) {
+            for (int j = 0; j < currentBoard[i].length; j++) {
+                if (currentBoard[i][j] == Piece.EMPTY) {
+                    if (currentIndex == targetIndex) {
+                        return new int[]{i, j};  /* thorapu random move eka return karanawa */
+                    }
+                    currentIndex++;
+                }
+            }
         }
 
-
-        Random random = new Random();
-        return availableMoves.get(random.nextInt(availableMoves.size()));
+        return new int[]{-1, -1}; /* board eke eka kotuwak hari his nam me condition ekata enne na */
     }
 
     //--------------------------------------------------------------------------------------------
