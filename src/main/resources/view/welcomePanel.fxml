@@ -12,7 +12,7 @@
 
 <AnchorPane prefHeight="727.0" prefWidth="864.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.assignment.tictactoe.controller.WelcomePanelController">
    <children>
-      <Pane fx:id="gamePane" layoutY="-1.0" prefHeight="630.0" prefWidth="864.0" style="-fx-background-color: white;">
+      <Pane fx:id="gamePane" layoutY="-1.0" prefHeight="727.0" prefWidth="864.0" style="-fx-background-color: white;">
          <children>
             <Label alignment="CENTER" layoutX="9.0" layoutY="28.0" prefHeight="161.0" prefWidth="846.0" text="Tic-Tac-Toe" textFill="RED">
                <font>
@@ -32,7 +32,7 @@
                   <DropShadow />
                </effect>
             </TextField>
-            <Button fx:id="playButton" layoutX="331.0" layoutY="501.0" mnemonicParsing="false" onAction="#play" prefHeight="72.0" prefWidth="216.0" style="-fx-background-radius: 30; -fx-border-color: blue; -fx-border-radius: 30;" text="Play" textFill="RED" visible="false">
+            <Button fx:id="playButton" layoutX="331.0" layoutY="537.0" mnemonicParsing="false" onAction="#play" prefHeight="72.0" prefWidth="216.0" style="-fx-background-radius: 30; -fx-border-color: blue; -fx-border-radius: 30;" text="Play" textFill="RED">
                <font>
                   <Font name="Papyrus" size="24.0" />
                </font>
@@ -50,16 +50,5 @@
             </JFXToggleButton>
          </children>
       </Pane>
-      <Button fx:id="replayButton" layoutX="330.0" layoutY="641.0" mnemonicParsing="false" onAction="#replay" prefHeight="72.0" prefWidth="210.0" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: blue;" text="Replay" textFill="RED">
-         <font>
-            <Font name="Papyrus" size="22.0" />
-         </font>
-         <effect>
-            <DropShadow>
-               <color>
-                  <Color blue="1.0" />
-               </color></DropShadow>
-         </effect>
-      </Button>
    </children>
 </AnchorPane>

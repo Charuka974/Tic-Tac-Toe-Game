@@ -11,9 +11,9 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="gameUiAnchorPane" prefHeight="630.0" prefWidth="864.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.assignment.tictactoe.controller.BoardController">
+<AnchorPane fx:id="gameUiAnchorPane" prefHeight="727.0" prefWidth="864.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.assignment.tictactoe.controller.BoardController">
    <children>
-      <Pane fx:id="gameUiPane" prefHeight="630.0" prefWidth="864.0" style="-fx-background-color: white;">
+      <Pane fx:id="gameUiPane" prefHeight="727.0" prefWidth="864.0" style="-fx-background-color: white;">
          <children>
             <GridPane fx:id="boardGridPane" gridLinesVisible="true" layoutX="181.0" layoutY="105.0" prefHeight="500.0" prefWidth="500.0">
               <columnConstraints>
@@ -121,7 +121,7 @@
                   <Font name="Papyrus" size="48.0" />
                </font>
             </Label>
-            <Button fx:id="backBtn" layoutX="14.0" layoutY="32.0" mnemonicParsing="false" onAction="#goBack" prefHeight="44.0" prefWidth="126.0" style="-fx-border-color: red; -fx-border-radius: 30; -fx-background-radius: 30;" text="Previous Games" textFill="BLUE">
+            <Button fx:id="backBtn" layoutX="14.0" layoutY="32.0" mnemonicParsing="false" onAction="#goBack" prefHeight="44.0" prefWidth="126.0" style="-fx-border-color: red; -fx-border-radius: 30; -fx-background-radius: 30;" text="Back" textFill="BLUE">
                <font>
                   <Font name="Papyrus" size="14.0" />
                </font>
@@ -129,6 +129,18 @@
                   <DropShadow>
                      <color>
                         <Color red="1.0" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+            <Button fx:id="replayButton" layoutX="326.0" layoutY="640.0" mnemonicParsing="false" onAction="#replay" prefHeight="72.0" prefWidth="210.0" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: blue;" text="Replay" textFill="RED">
+               <font>
+                  <Font name="Papyrus" size="22.0" />
+               </font>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color blue="1.0" />
                      </color>
                   </DropShadow>
                </effect>

@@ -23,11 +23,7 @@ public class WelcomePanelController implements Initializable {
     private Pane gamePane;
 
     @FXML
-    private  Button replayButton;
-
-    @FXML
     private JFXToggleButton easyModeToggleBtn;
-
 
     @FXML
     private TextField nameText;
@@ -40,8 +36,6 @@ public class WelcomePanelController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        replayButton.setText("Play");
-
 
         gamePane.setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.ENTER) {
@@ -76,7 +70,6 @@ public class WelcomePanelController implements Initializable {
     }
 
     public void loadGameBoard() {
-        replayButton.setText("Replay");
 
         try {
             Pane newBoardPane = FXMLLoader.load(this.getClass().getResource("/view/boardUi.fxml"));
@@ -91,20 +84,6 @@ public class WelcomePanelController implements Initializable {
 
     }
 
-
-
-    @FXML
-    public void replay(ActionEvent event) {
-        humanPlayerName = nameText.getText();
-
-        if (!humanPlayerName.isEmpty()) {
-            loadGameBoard();
-        } else {
-            JOptionPane.showMessageDialog(null, "Enter Your Name");
-        }
-
-        // loadGameBoard();
-    }
 
 
 

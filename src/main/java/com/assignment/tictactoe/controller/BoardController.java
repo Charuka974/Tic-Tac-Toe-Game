@@ -42,6 +42,7 @@ public class BoardController implements Initializable, BoardUI {
     private Pane gameUiPane;
 
 
+
     private final Board board = new BoardImpl(this);
     public static final Button[][] buttons = new Button[3][3];
 
@@ -55,6 +56,8 @@ public class BoardController implements Initializable, BoardUI {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        replayButton.setVisible(false);
+
         buttons[0][0] = button0_0;
         buttons[0][1] = button0_1;
         buttons[0][2] = button0_2;
@@ -145,39 +148,84 @@ public class BoardController implements Initializable, BoardUI {
     public void notifyWinner() {
 
         Winner winner = board.checkWinner();
-        String win;
+        String win ;
         if (winner != null) {
             win = String.valueOf(winner.winningPiece);
             if (Objects.equals(win, "O")) {
                 System.out.println("Ai won");
-                disableButtons();
+                disableButtons(true);
                 winnerLbl.setVisible(true);
                 winnerLbl.setText("Ai won , You lost..");
+                replayButton.setVisible(true);
 
             } else if (Objects.equals(win, "X")) {
                 System.out.println("Human won");
-                disableButtons();
+                disableButtons(true);
                 winnerLbl.setVisible(true);
                 winnerLbl.setText("You won , Ai lost..  ");
+                replayButton.setVisible(true);
+
             } else {
                 System.out.println("Tied");
-                disableButtons();
+                disableButtons(true);
                 winnerLbl.setVisible(true);
                 winnerLbl.setText("Game is tied..");
+                replayButton.setVisible(true);
             }
+            //changeWinnerColour(winner.row1,winner.row2,winner.row3,winner.col1, winner.col2, winner.col3);
         }
 
 
     }
 
-    private void disableButtons() {
-        for (Button[] row : buttons) {
-            for (Button button : row) {
-                button.setDisable(true);
+//    public void changeWinnerColour(int row1, int row2, int row3, int col1, int col2,int col3){
+//        buttons[row1][col1].setStyle("-fx-background-color: yellow;");
+//        buttons[row2][col2].setStyle("-fx-background-color: yellow;");
+//        buttons[row3][col3].setStyle("-fx-background-color: yellow;");
+//    }
+
+    private void disableButtons(boolean disable) {
+        if(disable){
+            for (Button[] row : buttons) {
+                for (Button button : row) {
+                    button.setDisable(true);
+                }
+            }
+        }else{
+            for (Button[] row : buttons) {
+                for (Button button : row) {
+                    button.setDisable(false);
+                }
             }
         }
+
     }
 
+//    @FXML
+//    void reply(MouseEvent event) { //replay the game
+////        Button[][] button = new Button[][]{{btn00,btn01,btn02},{btn10,btn11,btn12},{btn20,btn21,btn22}};
+//        for (int i = 0; i < 3; i++) {
+//            for (int j = 0; j < 3; j++) {
+//                button[i][j].setText("");
+//                BoardImpl.pieces[i][j] = Piece.EMPTY;
+//            }
+//        }
+//        setDisableBoard(false);
+//        lblWin.setText("");
+//    }
+
+    @FXML
+    void replay(ActionEvent event) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                buttons[i][j].setText("");
+                BoardImpl.pieces[i][j] = Piece.EMPTY;
+            }
+        }
+        disableButtons(false);
+        winnerLbl.setVisible(false);
+        replayButton.setVisible(false);
+    }
 
     @FXML
     void goBack(ActionEvent event) {
