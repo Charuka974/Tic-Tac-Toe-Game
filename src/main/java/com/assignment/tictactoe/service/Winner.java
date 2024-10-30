@@ -34,15 +34,15 @@ public class Winner {
 
     }
 
-    public String toString() {
-        if (winningPiece == Piece.O) {
-            return "Ai Won";
-        } else if (winningPiece == Piece.X) {
-            return "You Won";
-        } else {
-            return "It's a draw!";
-        }
-    }
+//    public String toString() {
+//        if (winningPiece == Piece.O) {
+//            return "Ai Won";
+//        } else if (winningPiece == Piece.X) {
+//            return "You Won";
+//        } else {
+//            return "It's a draw!";
+//        }
+//    }
 
 
 

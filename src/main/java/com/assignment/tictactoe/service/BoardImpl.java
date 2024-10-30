@@ -71,19 +71,19 @@ public class BoardImpl implements Board {
         for (int i = 0; i < pieces.length; i++) {
             if (pieces[0][i] != Piece.EMPTY && pieces[0][i] == pieces[1][i] && pieces[1][i] == pieces[2][i]) {
 
-                return new Winner(pieces[0][i]);
+                return new Winner(pieces[0][i]);    // Return the result to minimax or game logic
             }
         }
 
         // Check diagonals
         if (pieces[0][0] != Piece.EMPTY && pieces[0][0] == pieces[1][1] && pieces[1][1] == pieces[2][2]) {
 
-            return new Winner(pieces[0][0]);
+            return new Winner(pieces[0][0]);    // Return the result to minimax or game logic
         }
 
         if (pieces[0][2] != Piece.EMPTY && pieces[0][2] == pieces[1][1] && pieces[1][1] == pieces[2][0]) {
 
-            return new Winner(pieces[0][2]);
+            return new Winner(pieces[0][2]);    // Return the result to minimax or game logic
         }
 
         // Check for a draw

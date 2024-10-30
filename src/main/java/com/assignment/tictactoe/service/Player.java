@@ -6,7 +6,7 @@ import java.awt.*;
 
 public abstract class Player {
     protected Board board;
-    protected BoardImpl boardImpl;
+    //protected BoardImpl boardImpl;
 
     //public Player() {}
     public Player(Board board) {
