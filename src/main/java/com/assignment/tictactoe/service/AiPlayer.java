@@ -82,9 +82,9 @@ public class AiPlayer extends Player {
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++) {
                     if (currentBoard[i][j] == Piece.EMPTY) {
-                        currentBoard[i][j] = Piece.O;
+                        currentBoard[i][j] = Piece.O;       /* simulates the human move by putting X */
                         int score = minimax(currentBoard, depth + 1, false);
-                        currentBoard[i][j] = Piece.EMPTY;
+                        currentBoard[i][j] = Piece.EMPTY;       /* changes the board back to EMPTY because this is a simulation */
                         bestScore = Math.max(score, bestScore);
                     }
                 }
@@ -95,9 +95,9 @@ public class AiPlayer extends Player {
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++) {
                     if (currentBoard[i][j] == Piece.EMPTY) {
-                        currentBoard[i][j] = Piece.X;
+                        currentBoard[i][j] = Piece.X;       /* simulates the AI move by putting O */
                         int score = minimax(currentBoard, depth + 1, true);
-                        currentBoard[i][j] = Piece.EMPTY;
+                        currentBoard[i][j] = Piece.EMPTY;  /* changes the board back to EMPTY because this is a simulation */
                         bestScore = Math.min(score, bestScore);
                     }
                 }

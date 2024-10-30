@@ -53,8 +53,8 @@ public class BoardImpl implements Board {
 
         printBoard();
         checkWinner();
-        boardUI.notifyWinner();
-
+        boardUI.notifyWinner(); /* calls the notifyWinner method only if the move is updated on the pieces array */
+        /* if the move is a simulated move by AI, minimax the move is not updated, so it does not call the notifyWinner method */
     }
 
     @Override
