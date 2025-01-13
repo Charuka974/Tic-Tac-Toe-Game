@@ -47,7 +47,7 @@ public class BoardController implements Initializable, BoardUI {
     public static final Button[][] buttons = new Button[3][3];
 
     /* Initialize AI and Human players with the current controller instance */
-    private final AiPlayer aiPlayer = new AiPlayer(board, this);  /* Pass this to AiPlayer */
+    private final AiPlayer aiPlayer = new AiPlayer(board, this);  /* Pass BoardController to AiPlayer using this keyword */
     private final HumanPlayer humanPlayer = new HumanPlayer(board);
 
     public static Button[][] getButtons() {
@@ -201,18 +201,6 @@ public class BoardController implements Initializable, BoardUI {
 
     }
 
-//    @FXML
-//    void reply(MouseEvent event) { //replay the game
-////        Button[][] button = new Button[][]{{btn00,btn01,btn02},{btn10,btn11,btn12},{btn20,btn21,btn22}};
-//        for (int i = 0; i < 3; i++) {
-//            for (int j = 0; j < 3; j++) {
-//                button[i][j].setText("");
-//                BoardImpl.pieces[i][j] = Piece.EMPTY;
-//            }
-//        }
-//        setDisableBoard(false);
-//        lblWin.setText("");
-//    }
 
     @FXML
     void replay(ActionEvent event) {
